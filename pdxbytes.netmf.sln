@@ -33,6 +33,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pdxbytes.ComponentModel", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pdxbytes.PresentationFramework", "pdxbytes.PresentationFramework\pdxbytes.PresentationFramework.csproj", "{13A7799D-5A0B-439D-8CF8-2D2370865640}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{4F2CC0B9-8A76-49B4-B62F-D3CFB96E9138}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_4.2|Any CPU = Debug_4.2|Any CPU
