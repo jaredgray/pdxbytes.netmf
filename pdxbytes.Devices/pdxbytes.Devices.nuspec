@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata>
+    <id>pdxbytes.Devices</id>
+    <version>1.0.0.0</version>
+    <title>pdxbytes.Devices</title>
+    <authors>pdxbytes</authors>
+    <description>a device library that simplifies the use of low level devices with simple apis</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>false</developmentDependency>
+    <copyright>Copyright ©  2015 pdxbytes</copyright>
+    <tags>NetMF</tags>
+    <frameworkAssemblies />
+    <dependencies />
+  </metadata>
+  <files>
+    <file src="bin\Debug_4.3\pdxbytes.Devices.dll" target="lib\NetMicrov4.3" />
+    <file src="bin\Debug_4.3\pdxbytes.Devices.pdb" target="lib\NetMicrov4.3" />
+    <file src="bin\Debug_4.3\pdxbytes.Graphics.dll" target="lib\NetMicrov4.3" />
+    <file src="bin\Debug_4.3\pdxbytes.Graphics.pdb" target="lib\NetMicrov4.3" />
+  </files>
+</package>
