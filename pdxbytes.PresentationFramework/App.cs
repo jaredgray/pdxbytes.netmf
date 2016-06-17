@@ -36,6 +36,25 @@ namespace pdxbytes.PresentationFramework
         }
         private View _MainView;
 
+        public View NavigationView
+        {
+            get
+            {
+                return _NavigationView;
+            }
+            set
+            {
+                if (value != _NavigationView)
+                {
+                    _NavigationView = value;
+                    if (null != this.Controller)
+                        this.Controller.SetNavigationView(value);
+                }
+
+            }
+        }
+        private View _NavigationView;
+
         /// <summary>
         /// The UIController
         /// </summary>
@@ -73,6 +92,7 @@ namespace pdxbytes.PresentationFramework
                 this.Controller.TouchInterface = touchinterface;
 
             this.Controller.SetMainView(this.MainView);
+            this.Controller.SetNavigationView(this.NavigationView);
 
             this.Controller.Startup();
 

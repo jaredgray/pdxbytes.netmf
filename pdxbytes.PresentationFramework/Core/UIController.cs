@@ -19,11 +19,16 @@ namespace pdxbytes.PresentationFramework.Core
         {
             this.MainView = view;
         }
+        public void SetNavigationView(View view)
+        {
+            this.NavigationView = view;
+        }
 
         public IDisplay Display { get; set; }
         public ITouchInterface TouchInterface { get; set; }
         private TouchManager TouchManager { get; set; }
         public View MainView { get; set; }
+        public View NavigationView { get; set; }
 
         public void Startup()
         {
@@ -40,6 +45,8 @@ namespace pdxbytes.PresentationFramework.Core
             var controls = this.MainView.AllControls.Where((x) => x.IsInvalid && x.IsVisible).OrderBy(x => ((Control)x).Zindex, Comparers.IntCompare);
             Pipeline pipeline = new Pipeline(Display);
             pipeline.AddDisplay(this.MainView.Surface);
+            if(null != this.NavigationView && this.NavigationView.IsVisible && this.NavigationView.IsInvalid)
+                pipeline.AddDisplay(this.NavigationView.Surface);
             foreach (Control c in controls)
             {
                 pipeline.AddDisplay(c.Surface);

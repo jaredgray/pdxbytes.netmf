@@ -12,7 +12,7 @@ namespace pdxbytes.Devices.Display
 
         public abstract void Dispose();
 
-        protected abstract void Initialize();
+        public abstract void Initialize();
 
         public abstract void DisplayOn();
 
@@ -23,11 +23,11 @@ namespace pdxbytes.Devices.Display
         public abstract void Sleep();
 
         public abstract void Wake();
-
+        
         public abstract void BeginDraw(short x, short y, short width, short height);
 
         public abstract void WriteBuffer(byte[] buffer);
-
+        
         public Orientations CurrentOrientation { get; set; }
         public abstract short Width { get; }
         public abstract short Height { get; }

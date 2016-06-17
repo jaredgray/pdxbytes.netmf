@@ -335,7 +335,7 @@ namespace pdxbytes.Devices.Display
             //Reset = null;
         }
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             //Reset.Write(true);
             //Thread.Sleep(50);

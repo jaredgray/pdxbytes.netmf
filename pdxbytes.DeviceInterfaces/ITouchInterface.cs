@@ -6,7 +6,6 @@ namespace pdxbytes.DeviceInterfaces
 {
     public interface ITouchInterface
     {
-        TimeSpan DebounceTime { get; set; }
         Orientations NaturalOrientation { get; }
         CoordinateSystems CoordinateSystem { get; }
         event TouchDelegate Touched;

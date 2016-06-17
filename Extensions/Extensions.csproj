@@ -42,6 +42,7 @@
     <Compile Include="MathExtensions\ComputationalExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="System.Diagnostics\DebuggerBrowsableState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Native" />

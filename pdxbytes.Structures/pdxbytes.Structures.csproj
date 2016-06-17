@@ -45,6 +45,7 @@
     <Compile Include="Contracts\ITimeStructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pulse.cs" />
+    <Compile Include="Swype.cs" />
     <Compile Include="System.Diagnostics\DebuggerBrowsableState.cs" />
     <Compile Include="Touch.cs" />
     <Compile Include="Vec2.cs" />

@@ -7,7 +7,7 @@ namespace pdxbytes.PresentationFramework.Controls
     {
         public View()
         {
-            this.AllControls = new ViewControlCollection();
+            this.AllControls = new ViewControlCollection(this);
         }
 
         

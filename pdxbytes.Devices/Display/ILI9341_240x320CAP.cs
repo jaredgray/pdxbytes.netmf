@@ -94,7 +94,6 @@ namespace pdxbytes.Devices.Display
 
             Spi = new SharedSPI(this.NormalState);
             
-            Initialize();
         }
 
         private ExtendedSpiConfiguration NormalState;
@@ -124,68 +123,6 @@ namespace pdxbytes.Devices.Display
         public override int Stride { get { return this.Width; } }
 
         #endregion
-
-        //public void DrawBuffer(DisplayBuffer buffer)
-        //{
-        //    if (buffer.X < 0 || buffer.Y < 0 || buffer.X >= Width || buffer.Y >= Height)
-        //    {
-        //        Debug.Print("Outside the bounds of the window");
-        //        return;
-        //    }
-        //    this.DrawData(buffer.X, buffer.Y, (short)(buffer.X + (buffer.Width - 1)), (short)(buffer.Y + (buffer.Height - 1)), buffer.Data);
-
-        //}
-
-        /// <summary>
-        /// Below is the first implementation of character drawing
-        /// </summary>
-        //const int FONT_X = 8;
-        //public void DrawChar(char ascii, byte poX, byte poY, byte size, byte fgcolor)
-        //{
-        //    if ((ascii <= 32) || (ascii >= 127))
-        //    {
-        //        ascii = '?';
-        //    }
-        //    for (byte i = 0; i < FONT_X; i++)
-        //    {
-        //        byte temp = Fonts.SegoeUI[ascii - 0x20][i];
-        //        for (byte f = 0; f < 8; f++)
-        //        {
-        //            if (((temp >> f) & 0x01) > 0)
-        //            {
-        //                new Rectangle((byte)(poX + (i * size)), (byte)(poY + (f * size)), size, size, fgcolor).Draw(this);
-        //            }
-
-        //        }
-
-        //    }
-        //}
-        //public void DrawString(string ascii, byte x, byte y, byte size, byte color)
-        //{
-        //    for (int l = 0; l < ascii.Length; l++)
-        //    {
-        //        var c = ascii[l];
-
-        //        if ((c <= 32) || (c >= 127))
-        //        {
-        //            c = '?';
-        //        }
-        //        for (byte i = 0; i < FONT_X; i++)
-        //        {
-        //            byte temp = Fonts.SegoeUI[c - 0x20][i];
-        //            for (byte f = 0; f < 8; f++)
-        //            {
-        //                if (((temp >> f) & 0x01) > 0)
-        //                {
-        //                    new Rectangle((byte)(x + (i * size)), (byte)(y + (f * size)), size, size, color).Draw(this);
-        //                }
-        //            }
-        //        }
-
-        //        x += (byte)(size * (FONT_X - 1));
-        //        // if x > screen width drop to a new line
-        //    }
-        //}
 
         #region ITFT implementation
 
@@ -229,28 +166,6 @@ namespace pdxbytes.Devices.Display
             return result[0];
             // need to set the chip select low and high manually, not sure if we can just create an output on the cs pin when the 
             // spi interface has already been initiated.
-            /*
-            uint8_t Adafruit_ILI9341::readcommand8(uint8_t c, uint8_t index) {
-   if (hwSPI) spi_begin();
-   digitalWrite(_dc, LOW); // command
-   digitalWrite(_cs, LOW);
-   spiwrite(0xD9);  // woo sekret command?
-   digitalWrite(_dc, HIGH); // data
-   spiwrite(0x10 + index);
-   digitalWrite(_cs, HIGH);
-
-   digitalWrite(_dc, LOW);
-   digitalWrite(_sclk, LOW);
-   digitalWrite(_cs, LOW);
-   spiwrite(c);
- 
-   digitalWrite(_dc, HIGH);
-   uint8_t r = spiread();
-   digitalWrite(_cs, HIGH);
-   if (hwSPI) spi_end();
-   return r;
-}
-            */
 
         }
 
@@ -260,40 +175,9 @@ namespace pdxbytes.Devices.Display
 
         protected void InitializeFrameRateControl()
         {
-            // frame rate control - normal mode
-            // frame rate = fosc / (1 x 2 + 40) * (LINE + 2C + 2D)
             WriteCommand((byte)LcdCommand.FRMCTR1, DelayTimes.None, 0x01, 0x2C, 0x2D);
-
-            //DataCommand.Write(Command);
-            //Write((byte)LcdCommand.FRMCTR1);  // frame rate control - normal mode
-            //DataCommand.Write(Data);
-            //Write(0x01);  
-            //Write(0x2C);
-            //Write(0x2D);
-
-            // frame rate control - idle mode
-            // frame rate = fosc / (1 x 2 + 40) * (LINE + 2C + 2D)
-            WriteCommand((byte)LcdCommand.FRMCTR2, DelayTimes.None, 0x01, 0x2C, 0x2D);
-            //DataCommand.Write(Command);
-            //Write((byte)LcdCommand.FRMCTR2);  
-            //DataCommand.Write(Data);
-            //Write(0x01);  
-            //Write(0x2C);
-            //Write(0x2D);
-
-            // frame rate control - partial mode
-            // dot inversion mode
-            // line inversion mode
+            WriteCommand((byte)LcdCommand.FRMCTR2, DelayTimes.None, 0x01, 0x2C, 0x2D); 
             WriteCommand((byte)LcdCommand.FRMCTR3, DelayTimes.None, 0x01, 0x2C, 0x2D, 0x01, 0x2C, 0x2D);
-            //DataCommand.Write(Command);
-            //Write((byte)LcdCommand.FRMCTR3);  
-            //DataCommand.Write(Data);
-            //Write(0x01); 
-            //Write(0x2C);
-            //Write(0x2D);
-            //Write(0x01); 
-            //Write(0x2C);
-            //Write(0x2D);
         }
 
         protected void InitializeUnknownCommands()
@@ -309,28 +193,18 @@ namespace pdxbytes.Devices.Display
 
         protected void InitializePowerControl()
         {
-            //Power control
-            // 0x23 - VRH[5:0] 
             this.WriteCommand((byte)LcdCommand.PWCTR1, DelayTimes.None, 0x23);
-            //Power control 
-            //SAP[2:0];BT[3:0] 
             this.WriteCommand((byte)LcdCommand.PWCTR2, DelayTimes.None, 0x10);
-
         }
 
         protected void InitializeVMControl()
         {
-            //VCM control 
-            //对比度调节
             this.WriteCommand((byte)LcdCommand.VMCTR1, DelayTimes.None, 0x3e, 0x28);
-            // VCM control2 
             this.WriteCommand((byte)LcdCommand.VMCTR2, DelayTimes.None, 0x86);
-
         }
 
         protected void InitializeMemoryAccessControl()
         {
-            // Memory Access Control 
             this.WriteCommand((byte)LcdCommand.MADCTL, DelayTimes.None, 0x48);
             this.WriteCommand((byte)LcdCommand.PIXFMT, DelayTimes.None, 0x55);
             this.WriteCommand((byte)LcdCommand.FRMCTR1, DelayTimes.None, 0x00, 0x18);
@@ -339,7 +213,6 @@ namespace pdxbytes.Devices.Display
 
         protected void InitializeDisplayFunctionControl()
         {
-            // Display Function Control 
             this.WriteCommand((byte)LcdCommand.DFUNCTR, DelayTimes.None, 0x08, 0x82, 0x27);
         }
 
@@ -352,14 +225,8 @@ namespace pdxbytes.Devices.Display
 
         }
 
-        protected override void Initialize()
+        public override void Initialize()
         {
-            //this.Reset();
-            /*
-            DataCommand.Write(Command);
-            Write((byte)LcdCommand.SWRESET); // software reset
-            Thread.Sleep(150);
-            */
 
             this.InitializeUnknownCommands();
 
@@ -396,9 +263,7 @@ namespace pdxbytes.Devices.Display
         private void SetPixel(int x, int y, ushort color)
         {
             if ((x < 0) || (x >= Width) || (y < 0) || (y >= Height)) return;
-            var index = ((y * Width) + x);// * sizeof(ushort);
-            //SpiBuffer[index] = (byte)(color >> 8);
-            //SpiBuffer[++index] = (byte)(color);
+            var index = ((y * Width) + x);
         }
 
 
@@ -434,7 +299,5 @@ namespace pdxbytes.Devices.Display
         protected ISPI Spi;
 
         #endregion
-
     }
-
 }

@@ -8,6 +8,7 @@ namespace pdxbytes.PresentationFramework.Core
     {
         public TouchManager(ITouchInterface iTouch, IDisplay display)
         {
+            this.SwipeDetector = new SwipeDetector();
             this.Display = display;
             this.ITouch = iTouch;
             this.InitializeTouchDelegate();
@@ -16,6 +17,7 @@ namespace pdxbytes.PresentationFramework.Core
 
         private void ITouch_Touched(Structures.Touch touch)
         {
+            SwipeDetector.OnTouchDetected(touch);
             var handler = Touched;
             if (null != handler)
             {
@@ -26,6 +28,7 @@ namespace pdxbytes.PresentationFramework.Core
 
         private ITouchInterface ITouch { get; set; }
         private IDisplay Display { get; set; }
+        private SwipeDetector SwipeDetector { get; set; }
 
         void InitializeTouchDelegate()
         {

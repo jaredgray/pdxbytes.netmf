@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AdafruitST7735Sketch.cs" />
+    <Compile Include="Esp8266WifiSketch.cs" />
     <Compile Include="FT6206CAPI2C_Sketch.cs" />
     <Compile Include="HC06Sketch.cs" />
     <Compile Include="ILI9341_240x320CAPSketch.cs" />

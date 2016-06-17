@@ -11,12 +11,14 @@ namespace pdxbytes.PresentationFramework.Controls
     {
         #region IEnumerable members 
         private static int Z = 0;
-        public ControlCollection()
+        public ControlCollection(UIElement owner)
         {
+            this.Owner = owner;
         }
 
         public void Add(Control t)
         {
+            t.Parent = this.Owner;
             bool inserted = false;
             if (t.Zindex > 0)
             {
@@ -58,6 +60,8 @@ namespace pdxbytes.PresentationFramework.Controls
             get { return (Control)inner[i]; }
             set { inner[i] = value; }
         }
+
+        public UIElement Owner { get; private set; }
 
         protected virtual bool AddToViewCollection { get { return true; } }
 

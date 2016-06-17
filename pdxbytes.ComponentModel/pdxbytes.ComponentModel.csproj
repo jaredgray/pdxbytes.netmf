@@ -46,6 +46,7 @@
     <Compile Include="PropertyChangedEventArgs.cs" />
     <Compile Include="PropertyChangedEventHandler.cs" />
     <Compile Include="PropertyMetadata.cs" />
+    <Compile Include="System.Diagnostics\DebuggerBrowsableState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Native" />

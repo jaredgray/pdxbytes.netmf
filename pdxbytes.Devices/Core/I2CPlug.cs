@@ -18,6 +18,7 @@ namespace pdxbytes.Devices.Core
         public I2CPlug(byte address, int clockRateKhz)
         {
             this.i2cConfig = new I2CDevice.Configuration(address, clockRateKhz);
+          
             this.i2cDevice = new I2CDevice(this.i2cConfig);
             
         }
@@ -60,7 +61,7 @@ namespace pdxbytes.Devices.Core
             // make sure the data was sent
             if (written != writeBuffer.Length)
             {
-                throw new Exception("Could not write to device.");
+               // throw new Exception("Could not write to device.");
             }
         }
         private void Read(byte[] readBuffer)
@@ -82,7 +83,7 @@ namespace pdxbytes.Devices.Core
             // make sure the data was read
             if (read != readLength)
             {
-                Debug.Print("Could not read from the slave device");
+                //Debug.Print("Could not read from the slave device");
                 //throw new Exception("Could not read from device.");
             }
         }
@@ -112,17 +113,26 @@ namespace pdxbytes.Devices.Core
         }
         protected void ReadFromRegister(byte register, byte[] readBuffer, bool repeatStartCondition = true)
         {
-            if(repeatStartCondition)
-            {
-                byte address1 = (byte)((register & 0xff00) >> 8);
-                //1111111100000000 mask + shift            
-                byte address2 = (byte)(register & 0xff);//0000000011111111 mask
-                this.Write(new byte[] { address1, address2 });
-            }
-            else
-                this.Write(new byte[] { register });
+            //if (repeatStartCondition)
+            //{
+            //    byte address1 = (byte)((register & 0xff00) >> 8);
+            //    //1111111100000000 mask + shift            
+            //    byte address2 = (byte)(register & 0xff);//0000000011111111 mask
+            //    this.Write(new byte[] { address1, address2 });
+            //}
+            //else
+            //    this.Write(new byte[] { register });
             //this.Read(readBuffer);
-            this.Read(readBuffer);
+
+
+            byte address1 = (byte)((register & 0xff00) >> 8);
+            //1111111100000000 mask + shift            
+            byte address2 = (byte)(register & 0xff);//0000000011111111 mask
+            this.Read(new I2CDevice.I2CTransaction[]
+            {
+                I2CDevice.CreateWriteTransaction(new byte[] { address1, address2 }),
+                I2CDevice.CreateReadTransaction(readBuffer)
+            }, readBuffer.Length);
         }
         protected byte ReadRegisterByte(byte register, bool repeatStartCondition = true)
         {

@@ -23,6 +23,8 @@ namespace pdxbytes.DeviceLinking
             var device = config.CreateDevice();
             this.Devices.Add(device);
 
+            device.Initialize();
+
             // detect the need to create a uicontroller
         }
 

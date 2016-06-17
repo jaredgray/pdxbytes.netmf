@@ -3,9 +3,7 @@ using Microsoft.SPOT;
 
 namespace pdxbytes.PresentationFramework.Controls
 {
-    public class ListView : DataContextControl
+    public class ListViewItem
     {
-        
-
     }
 }

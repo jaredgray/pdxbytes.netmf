@@ -11,7 +11,7 @@ namespace pdxbytes.PresentationFramework.Controls
     {
         public UIElement()
         {
-            _controls = new ControlCollection();
+            _controls = new ControlCollection(this);
             this.Surface = new Rectangle(0, 0, 0, 0);
             this.IsVisible = true;
             this.IsInvalid = true;
@@ -58,15 +58,20 @@ namespace pdxbytes.PresentationFramework.Controls
             this.Invalidate();
         }
 
+        
+
         private void Invalidate()
         {
             this.IsInvalid = true;
+            if (null != this.Parent)
+                this.Parent.Invalidate();
         }
 
         internal bool IsInvalid { get; set; }
 
         /// <summary>
-        /// sets the position of this control, realatively all child controls will be positioned within this control
+        /// sets the position of this control, realatively all child controls will be positioned within this cont
+        /// rol
         /// </summary>
         public Vec216 Position
         {
@@ -137,10 +142,11 @@ namespace pdxbytes.PresentationFramework.Controls
 
         public int Zindex { get { return this.Surface.Zindex; } set { this.Surface.Zindex = value; } }
 
+        public UIElement Parent { get; set; }
 
         internal virtual void HandleTap(Touch touch)
         {
-            Debug.Print(this.GetType().Name + ".HandleTap x: " + touch.Touch1.X + ", y: " + touch.Touch1.Y);
+            //Debug.Print(this.GetType().Name + ".HandleTap x: " + touch.Touch1.X + ", y: " + touch.Touch1.Y);
         }
         internal virtual void HandleDoubleTap(Touch touch)
         {

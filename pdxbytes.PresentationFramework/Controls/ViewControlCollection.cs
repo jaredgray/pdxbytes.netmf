@@ -5,6 +5,7 @@ namespace pdxbytes.PresentationFramework.Controls
 {
     public class ViewControlCollection : ControlCollection
     {
+        public ViewControlCollection(UIElement owner) : base(owner) { }
         protected override bool AddToViewCollection
         {
             get

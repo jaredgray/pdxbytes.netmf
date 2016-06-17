@@ -50,6 +50,7 @@
     <Compile Include="ITouchInterface.cs" />
     <Compile Include="Orientations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System.Diagnostics\DebuggerBrowsableState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Native" />

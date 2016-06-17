@@ -15,6 +15,9 @@ namespace pdxbytes.Devices.Test
 
             MyApplication app = new MyApplication();
             app.Run();
+
+            //Esp8266WifiSketch.Run();
+
             //ILI9341_240x320CAPSketch.Run();
             //FT6206CAPI2C_Sketch.Run();
 

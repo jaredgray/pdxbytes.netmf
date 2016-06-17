@@ -50,6 +50,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bluetooth\RN52.cs" />
+    <Compile Include="Core\SerialPortConnection.cs" />
+    <Compile Include="Core\SerialPortDevice.cs" />
     <Compile Include="Display\AdafruitST7735.cs" />
     <Compile Include="Display\BaseTFT.cs" />
     <Compile Include="Display\FT6206CAPI2C.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Temperature\IOven.cs" />
     <Compile Include="Temperature\MockOven.cs" />
     <Compile Include="Temperature\KTypeThemometer.cs" />
+    <Compile Include="Wifi\Esp8266.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Graphics" />

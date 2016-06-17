@@ -5,5 +5,6 @@ namespace pdxbytes.DeviceInterfaces
 {
     public interface IDevice
     {
+        void Initialize();
     }
 }

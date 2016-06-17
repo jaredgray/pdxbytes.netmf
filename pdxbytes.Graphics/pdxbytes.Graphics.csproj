@@ -61,6 +61,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Behavior\TouchEventHandler.cs" />
+    <Compile Include="DisplayMatrix.cs" />
     <Compile Include="Drawing.cs" />
     <Compile Include="GraphicsContext.cs" />
     <Compile Include="Pipeline.cs" />
