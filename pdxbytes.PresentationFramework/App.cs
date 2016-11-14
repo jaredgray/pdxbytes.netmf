@@ -72,6 +72,8 @@ namespace pdxbytes.PresentationFramework
 
         public void Run()
         {
+            this.OnStartup();
+
             if (null == this.MainView)
                 throw new System.Exception("A UI type application needs the MainView property set before running.");
 
@@ -82,7 +84,7 @@ namespace pdxbytes.PresentationFramework
             var display = (IDisplay)this.Linker.GetDeviceInterface(typeof(IDisplay));
             if (null == display)
                 throw new System.Exception("A UI type application requires a device configuration for a display");
-
+            
             this.Running = true;
 
             this.Controller.Display = display;
@@ -96,13 +98,30 @@ namespace pdxbytes.PresentationFramework
 
             this.Controller.Startup();
 
+            this.OnLoad();
+
             while (this.Running)
                 Thread.Sleep(1000);
+
+            this.OnShutDown();
         }
 
         public void AddDeviceConfiguration(IDeviceConfiguration config)
         {
             this.DeviceConfigurations.Add(config);
+        }
+
+        public virtual void OnLoad()
+        {
+
+        }
+        public virtual void OnStartup()
+        {
+
+        }
+        public virtual void OnShutDown()
+        {
+
         }
     }
 }

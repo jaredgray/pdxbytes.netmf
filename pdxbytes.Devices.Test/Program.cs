@@ -13,8 +13,11 @@ namespace pdxbytes.Devices.Test
         public static void Main()
         {
 
-            MyApplication app = new MyApplication();
-            app.Run();
+            //MyApplication app = new MyApplication();
+            //app.Run();
+
+            var gpsApp = new GPSSampleApplication();
+            gpsApp.Run();
 
             //Esp8266WifiSketch.Run();
 

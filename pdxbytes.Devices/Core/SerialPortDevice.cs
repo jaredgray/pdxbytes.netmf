@@ -30,6 +30,7 @@ namespace pdxbytes.Devices.Core
             try
             {
                 Port = new SerialPort(ConnectionInfo.ComPort, (int)ConnectionInfo.BaudRate, ConnectionInfo.Pairity, ConnectionInfo.DataBits, ConnectionInfo.StopBits);
+
                 Port.ReadTimeout = ConnectionInfo.ReadTimeoutMs; // Set to 10ms. Default is -1?!
                 Port.DataReceived += Port_DataReceived;
                 Port.Open();
@@ -57,20 +58,22 @@ namespace pdxbytes.Devices.Core
 
         protected virtual void OnDataReceived(SerialDataReceivedEventArgs args)
         {
-            Debug.Print("data received");
-            var buffer = new byte[BufferSize];
-            int len = 0;
-            StringBuilder sb = new StringBuilder();
-            while (0 < (len = Read(buffer, 0, BufferSize)))
+            try
             {
-                if (len > 0)
+                var buffer = new byte[BufferSize];
+                int len = 0;
+                StringBuilder sb = new StringBuilder();
+                while (0 < (len = Read(buffer, 0, BufferSize)))
                 {
                     sb.Append(Encoding.UTF8.GetChars(buffer));
+                    buffer = new byte[BufferSize];
                 }
-                buffer = new byte[BufferSize];
+                if (sb.Length > 0)
+                    OnDataReceived(sb.ToString());
             }
-            if (sb.Length > 0)
-                OnDataReceived(sb.ToString());
+            catch (Exception)
+            {
+            }
         }
 
         protected virtual void OnDataReceived(string data)
@@ -114,11 +117,13 @@ namespace pdxbytes.Devices.Core
             {
                 try
                 {
-                    return Port.Read(buffer, offset, count);
+                    var read = Port.Read(buffer, offset, count);
+                    Debug.Print("amount read: " + read);
+                    return read;
                 }
                 catch (Exception ex)
                 {
-                    Debug.Print(ex.ToString());
+                    Debug.Print("Exception. read offset: " + offset + ". count: " + count + ", bytes to read: " + Port.BytesToRead);
                 }
             }
             return 0;

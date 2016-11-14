@@ -15,6 +15,11 @@ namespace pdxbytes.Devices.Test
     {
         public MyApplication()
         {
+        }
+
+        public override void OnStartup()
+        {
+            base.OnStartup();
             this.Configure();
         }
 

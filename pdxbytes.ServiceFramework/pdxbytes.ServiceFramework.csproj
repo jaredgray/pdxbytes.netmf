@@ -1,24 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
-    <AssemblyName>pdxbytes.Structures</AssemblyName>
+    <AssemblyName>pdxbytes.ServiceFramework</AssemblyName>
     <OutputType>Library</OutputType>
-    <RootNamespace>pdxbytes.Structures</RootNamespace>
+    <RootNamespace>pdxbytes.ServiceFramework</RootNamespace>
     <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B0AAC4DF-1C99-4B08-BE0D-B3BC420A507B}</ProjectGuid>
+    <ProjectGuid>{047B2AD1-59D3-4798-848E-43B77F51AA26}</ProjectGuid>
     <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
     <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
     <TargetFrameworkProfile />
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,31 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Color.cs" />
-    <Compile Include="ColorCollection.cs" />
-    <Compile Include="Contracts\IObjectDecoder.cs" />
-    <Compile Include="Contracts\IPulse.cs" />
-    <Compile Include="Contracts\ITimeStructure.cs" />
-    <Compile Include="Edges.cs" />
-    <Compile Include="GPSPlot.cs" />
-    <Compile Include="GPSPosition.cs" />
-    <Compile Include="GPSUpdate.cs" />
-    <Compile Include="Palette.cs" />
-    <Compile Include="Pixel.cs" />
-    <Compile Include="PixelDataBuffer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pulse.cs" />
-    <Compile Include="RelativeRect.cs" />
-    <Compile Include="Size.cs" />
-    <Compile Include="Swype.cs" />
+    <Compile Include="ServiceApplication.cs" />
     <Compile Include="System.Diagnostics\DebuggerBrowsableState.cs" />
-    <Compile Include="Touch.cs" />
-    <Compile Include="UInt24.cs" />
-    <Compile Include="UInt24Collection.cs" />
-    <Compile Include="Vec2.cs" />
-    <Compile Include="Vec216.cs" />
-    <Compile Include="Vec216Collection.cs" />
-    <Compile Include="Vec2Collection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Native" />
@@ -72,12 +42,19 @@
       <Project>{8611F385-154F-44AA-B591-A5203F703E02}</Project>
       <Name>pdxbytes.Collections</Name>
     </ProjectReference>
-    <ProjectReference Include="..\pdxbytes.Extensions\pdxbytes.Extensions.csproj">
-      <Project>{0824E51B-AC8B-4DFE-B554-BCB313209ECD}</Project>
-      <Name>pdxbytes.Extensions</Name>
+    <ProjectReference Include="..\pdxbytes.DeviceDrivers\pdxbytes.DeviceDrivers.csproj">
+      <Project>{A85DFB03-8C8D-465D-BE96-391783E34E82}</Project>
+      <Name>pdxbytes.DeviceDrivers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pdxbytes.DeviceInterfaces\pdxbytes.DeviceInterfaces.csproj">
+      <Project>{EEE34BE2-8E8E-4DC4-A944-5105E1D09323}</Project>
+      <Name>pdxbytes.DeviceInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pdxbytes.DeviceLinking\pdxbytes.DeviceLinking.csproj">
+      <Project>{27F84B05-AC39-4D96-AC69-8C002A40EF76}</Project>
+      <Name>pdxbytes.DeviceLinking</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Condition="EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <Import Condition="!EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

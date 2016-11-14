@@ -42,10 +42,12 @@
     <Compile Include="Configuration\DeviceConfigurationCollection.cs" />
     <Compile Include="Configuration\IDeviceConfiguration.cs" />
     <Compile Include="CoordinateSystems.cs" />
+    <Compile Include="GPSUpdateHandler.cs" />
     <Compile Include="IApp.cs" />
     <Compile Include="IDevice.cs" />
     <Compile Include="IDeviceCollection.cs" />
     <Compile Include="IDisplay.cs" />
+    <Compile Include="IGPSDevice.cs" />
     <Compile Include="IGraphicDevice.cs" />
     <Compile Include="ITouchInterface.cs" />
     <Compile Include="Orientations.cs" />

@@ -56,6 +56,8 @@
     <Compile Include="Display\BaseTFT.cs" />
     <Compile Include="Display\FT6206CAPI2C.cs" />
     <Compile Include="Display\ILI9341_240x320CAP.cs" />
+    <Compile Include="GPS\FGPMMOPA6H.cs" />
+    <Compile Include="GPS\GPSDevice.cs" />
     <Compile Include="IR\IRSensor.cs" />
     <Compile Include="StepperMotors\ULN2003MotorController.cs" />
     <Compile Include="Temperature\M31855K.cs" />

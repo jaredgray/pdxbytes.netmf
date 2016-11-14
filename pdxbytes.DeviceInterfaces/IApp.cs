@@ -8,5 +8,8 @@ namespace pdxbytes.DeviceInterfaces
     {
         void Run();
         void AddDeviceConfiguration(IDeviceConfiguration config);
+        void OnLoad();
+        void OnStartup();
+        void OnShutDown();
     }
 }
