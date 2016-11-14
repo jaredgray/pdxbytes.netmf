@@ -6,6 +6,8 @@ using pdxbytes.DeviceDrivers.Display;
 using pdxbytes.DeviceDrivers.Touch;
 using pdxbytes.PresentationFramework;
 using SecretLabs.NETMF.Hardware.NetduinoPlus;
+using pdxbytes.Structures;
+using pdxbytes.PresentationFramework.Controls.Material;
 
 namespace pdxbytes.Devices.Test
 {
@@ -26,14 +28,17 @@ namespace pdxbytes.Devices.Test
             {
                 Width = ILI9341_240x320CAP.WIDTH,
                 Height = ILI9341_240x320CAP.HEIGHT,
-                BackgroundColor = Palette.White
+                BackgroundColor = Palette.Gray10
             };
 
-            var panel = new Panel()
+            var panel = new MaterialPanel()
             {
                 Width = ILI9341_240x320CAP.WIDTH,
                 Height = 40,
-                BackgroundColor = Palette.Blue
+                BackgroundColor = Palette.Blue,
+                ShadowSize = 2,
+                ShadowColor = Palette.ShadowLightDark,
+                ShadowEdges = Edges.Bottom
             };
 
             var burger = new Hamburger()
@@ -51,6 +56,25 @@ namespace pdxbytes.Devices.Test
 
             this.MainView.Controls.Add(panel);
 
+            var materialpanel = new MaterialPanel()
+            {
+                Width = ILI9341_240x320CAP.WIDTH - 10,
+                Height = 80,
+                BackgroundColor = Palette.White,
+                X = 5,
+                Y = 10 + 40,
+                ShadowSize = 2,
+                ShadowColor = Palette.ShadowLightDark
+            };
+
+            this.MainView.Controls.Add(materialpanel);
+
+            //var testnode = new TestDisplay()
+            //{
+            //    X = 50,
+            //    Y = (short)(10 + materialpanel.Y + materialpanel.Height)
+            //};
+            //this.MainView.Controls.Add(testnode);
         }
     }
 }

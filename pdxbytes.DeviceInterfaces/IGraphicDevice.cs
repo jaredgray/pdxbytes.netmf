@@ -1,4 +1,6 @@
-﻿namespace pdxbytes.DeviceInterfaces
+﻿using pdxbytes.Structures;
+
+namespace pdxbytes.DeviceInterfaces
 {
     public interface IGraphicDevice : IDevice
     {
@@ -15,7 +17,7 @@
         /// pushes the visual data to the display
         /// </summary>
         /// <param name="buffer">data to go to the screen</param>
-        void WriteBuffer(byte[] buffer);
+        void WriteBuffer(UInt24Collection buffer);
 
         int BufferSize { get; }
         int Stride { get; }

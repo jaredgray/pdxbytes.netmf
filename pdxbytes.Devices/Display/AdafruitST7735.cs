@@ -3,6 +3,8 @@ using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using pdxbytes.Devices.Core;
 using System.Threading;
+using pdxbytes.Structures;
+using pdxbytes.Encoders;
 /*
 
 
@@ -11,7 +13,7 @@ using System.Threading;
 
 
 
-    NOTE: THIS IS CURRENTLY NOT FULLY IMPLEMENTED THE GRAPHICS DEVICE INTERFACE IS NOT IMPLEMENTED - and width and height of the IDisplay
+NOTE: THIS IS CURRENTLY NOT FULLY IMPLEMENTED THE GRAPHICS DEVICE INTERFACE IS NOT IMPLEMENTED - and width and height of the IDisplay
 
 
 
@@ -153,6 +155,14 @@ namespace pdxbytes.Devices.Display
             get
             {
                 return 160;
+            }
+        }
+
+        public override ColorEncoder Encoder
+        {
+            get
+            {
+                throw new NotImplementedException();
             }
         }
 
@@ -571,7 +581,7 @@ namespace pdxbytes.Devices.Display
             throw new NotImplementedException();
         }
 
-        public override void WriteBuffer(byte[] buffer)
+        public override void WriteBuffer(UInt24Collection buffer)
         {
             throw new NotImplementedException();
         }

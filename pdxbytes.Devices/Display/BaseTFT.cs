@@ -1,6 +1,8 @@
 using System;
 using Microsoft.SPOT;
 using pdxbytes.DeviceInterfaces;
+using pdxbytes.Structures;
+using pdxbytes.Encoders;
 
 namespace pdxbytes.Devices.Display
 {
@@ -9,6 +11,8 @@ namespace pdxbytes.Devices.Display
         public abstract int BufferSize { get; }
 
         public abstract int Stride { get; }
+
+        public abstract ColorEncoder Encoder { get; }
 
         public abstract void Dispose();
 
@@ -26,7 +30,7 @@ namespace pdxbytes.Devices.Display
         
         public abstract void BeginDraw(short x, short y, short width, short height);
 
-        public abstract void WriteBuffer(byte[] buffer);
+        public abstract void WriteBuffer(UInt24Collection buffer);
         
         public Orientations CurrentOrientation { get; set; }
         public abstract short Width { get; }

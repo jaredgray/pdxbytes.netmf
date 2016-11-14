@@ -94,9 +94,17 @@
     <Folder Include="Core\Text\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\pdxbytes.Collections\pdxbytes.Collections.csproj">
+      <Project>{8611F385-154F-44AA-B591-A5203F703E02}</Project>
+      <Name>pdxbytes.Collections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\pdxbytes.DeviceInterfaces\pdxbytes.DeviceInterfaces.csproj">
       <Project>{EEE34BE2-8E8E-4DC4-A944-5105E1D09323}</Project>
       <Name>pdxbytes.DeviceInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pdxbytes.Encoders\pdxbytes.Encoders.csproj">
+      <Project>{ADCFAA9D-7350-4F3A-A384-DFC6A0131F69}</Project>
+      <Name>pdxbytes.Encoders</Name>
     </ProjectReference>
     <ProjectReference Include="..\pdxbytes.Extensions\pdxbytes.Extensions.csproj">
       <Project>{0824E51B-AC8B-4DFE-B554-BCB313209ECD}</Project>

@@ -33,7 +33,7 @@ namespace pdxbytes.Graphics.Text
             return new Vec216(this.CurrentX, this.CurrentY);
         }
         bool Reading = false;
-        public override byte[] Read(int maxlength)
+        public override UInt24Collection Read(int maxlength)
         {
             if (bytelist.Count == 0 && !Reading)
             {
@@ -54,7 +54,7 @@ namespace pdxbytes.Graphics.Text
         const byte FONT_X = 8;
         
         ArrayList bytelist = new ArrayList();
-        struct Block { public byte[] Data; public Vec216 Position; }
+        struct Block { public UInt24Collection Data; public Vec216 Position; }
         public void DrawString(string ascii, short x, short y, byte size, Color color)
         {
             for (int l = 0; l < ascii.Length; l++)
@@ -87,7 +87,7 @@ namespace pdxbytes.Graphics.Text
         }
         
 
-        public override byte[] ReadInternal(int position, int maxlength)
+        public override UInt24Collection ReadInternal(int position, int maxlength)
         {
             throw new NotImplementedException();
         }

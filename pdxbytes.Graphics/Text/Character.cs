@@ -70,8 +70,8 @@ namespace pdxbytes.Graphics.Text
                         var position = 0;
 
                         var data = Drawing.ReadSolidColor(this.Size, this.Size, this.Color);
-                        
-                        Array.Copy(data, 0, buffer, position, data.Length);                        
+                        throw new NotImplementedException();// need to implement copying the data to the buffer
+                       // Array.Copy(data, 0, buffer, position, data.Length);                        
                     }
                 }
             }

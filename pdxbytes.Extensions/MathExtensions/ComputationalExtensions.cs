@@ -19,5 +19,30 @@ namespace pdxbytes.Extensions.MathExtensions
 
             return (i + 5 * nearest / 10) / nearest * nearest;
         }
+
+        /// <summary>
+        /// Converts a Hex string (2 character) to a number
+        /// </summary>
+        /// <param name="hexNumber">The Hex string (ex.: "0F")</param>
+        /// <returns>The decimal value</returns>
+        public static byte ByteFromHexString(this string hexNumber)
+        {
+            // Always in upper case
+            hexNumber = hexNumber.ToUpper();
+            // Contains all Hex posibilities
+            string ConversionTable = "0123456789ABCDEF";
+            // Will contain the return value
+            byte RetVal = 0;
+            // Will increase
+            byte Multiplier = 1;
+
+            for (int Index = hexNumber.Length - 1; Index >= 0; --Index)
+            {
+                RetVal += (byte)(Multiplier * (ConversionTable.IndexOf(hexNumber[Index])));
+                Multiplier = (byte)(Multiplier * ConversionTable.Length);
+            }
+
+            return RetVal;
+        }
     }
 }

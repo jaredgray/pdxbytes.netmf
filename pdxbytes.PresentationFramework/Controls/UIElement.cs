@@ -12,9 +12,14 @@ namespace pdxbytes.PresentationFramework.Controls
         public UIElement()
         {
             _controls = new ControlCollection(this);
-            this.Surface = new Rectangle(0, 0, 0, 0);
             this.IsVisible = true;
             this.IsInvalid = true;
+            this.CreateSurface();
+        }
+
+        protected virtual void CreateSurface()
+        {
+            this.Surface = new Rectangle(0, 0, 0, 0);
         }
 
         public bool IsVisible

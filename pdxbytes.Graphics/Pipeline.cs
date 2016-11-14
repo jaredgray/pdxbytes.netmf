@@ -1,5 +1,6 @@
 using System.Collections;
 using pdxbytes.DeviceInterfaces;
+using pdxbytes.Structures;
 
 namespace pdxbytes.Graphics
 {
@@ -24,11 +25,14 @@ namespace pdxbytes.Graphics
             // TODO: sort the display buffers in zindex order
             foreach (DisplayBuffer buffer in this.DisplayBuffers)
             {
-                byte[] bytes = null;
+                UInt24Collection bytes = null;
                 //var vec2 = buffer.GetCurrentPosition();
                 if(!buffer.ApplyPositionUpdates)
                     this.Display.BeginDraw(buffer.X, buffer.Y, buffer.Width, buffer.Height);
-                while (null != (bytes = buffer.Read(this.Display.BufferSize)))
+
+                // make the buffer size evenly divisible by the stride
+                var buffersize = ((int)(this.Display.BufferSize / buffer.Width));
+                while (null != (bytes = buffer.Read(buffersize)))
                 {
                     if(buffer.ApplyPositionUpdates)
                     {

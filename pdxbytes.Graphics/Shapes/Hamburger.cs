@@ -15,22 +15,22 @@ namespace pdxbytes.Graphics.Shapes
             this.ForegroundColor = foregroundcolor;
         }
         public Color ForegroundColor { get; set; }
-        public override byte[] ReadInternal(int position, int maxlength)
+        public override UInt24Collection ReadInternal(int position, int maxlength)
         {
             if (null == this.ForegroundColor || null == this.BackgroundColor)
                 return null;
             var part = (short)(this.Height / 5);
-            var allocation = new byte[this.Width * this.Height * sizeof(short)];
+            var allocation = new UInt24Collection(this.Width * this.Height);
             int pos = 0;
-            Drawing.ReadSolidColor(allocation, pos, this.Width, part, this.ForegroundColor);
-            pos+=(this.Width * part * sizeof(short));
-            Drawing.ReadSolidColor(allocation, pos, this.Width, part, this.BackgroundColor);
-            pos += (this.Width * part * sizeof(short));
-            Drawing.ReadSolidColor(allocation, pos, this.Width, part, this.ForegroundColor);
-            pos += (this.Width * part * sizeof(short));
-            Drawing.ReadSolidColor(allocation, pos, this.Width, part, this.BackgroundColor);
-            pos += (this.Width * part * sizeof(short));
-            Drawing.ReadSolidColor(allocation, pos, this.Width, part * 5, this.ForegroundColor);
+            Drawing.WriteSolidColor(allocation, pos, this.Width, part, this.ForegroundColor);
+            pos+=(this.Width * part);
+            Drawing.WriteSolidColor(allocation, pos, this.Width, part, this.BackgroundColor);
+            pos += (this.Width * part);
+            Drawing.WriteSolidColor(allocation, pos, this.Width, part, this.ForegroundColor);
+            pos += (this.Width * part);
+            Drawing.WriteSolidColor(allocation, pos, this.Width, part, this.BackgroundColor);
+            pos += (this.Width * part);
+            Drawing.WriteSolidColor(allocation, pos, this.Width, part, this.ForegroundColor);
             return allocation;
         }
 

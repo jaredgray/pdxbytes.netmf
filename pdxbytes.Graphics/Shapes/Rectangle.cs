@@ -9,21 +9,22 @@ namespace pdxbytes.Graphics.Shapes
             : base(x, y, width, height, zindex, backgroundcolor)
         {
         }
-        byte[] stride;
-        public override byte[] ReadInternal(int position, int maxlength)
+        UInt24Collection data;
+        public override UInt24Collection ReadInternal(int position, int maxlength)
         {
             if (null == this.BackgroundColor)
                 return null;
             if (position >= this.Length)
                 return null;
-            else if (null == stride)
-                stride = Drawing.ReadSolidColor(this, position, maxlength, this.BackgroundColor);
-            return stride;
+            else if(null == data)
+                data = Drawing.ReadSolidColor(this, position, maxlength, this.BackgroundColor);
+            return data;
         }
 
         public override void Cleanup()
         {
-            stride = null;
+            data.Dispose();
+            data = null;
         }
 
         //public override void Draw(IGraphicDevice context)

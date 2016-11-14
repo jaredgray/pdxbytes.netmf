@@ -10,12 +10,15 @@ namespace pdxbytes.Collections
         public BaseCollection(IEnumerable items)
         {
             this.inner = new ArrayList();
+           
             foreach (var item in items)
                 this.inner.Add(item);
         }
         protected ArrayList inner;
 
         public int Count { get { return inner.Count; } }
+
+        public int Length { get { return inner.Count; } }
 
         public void RemoveAt(int index)
         {

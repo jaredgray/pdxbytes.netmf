@@ -4,6 +4,8 @@ using Microsoft.SPOT.Hardware;
 using pdxbytes.Devices.Core;
 using System.Threading;
 using pdxbytes.DeviceInterfaces;
+using pdxbytes.Structures;
+using pdxbytes.Encoders;
 
 namespace pdxbytes.Devices.Display
 {
@@ -93,7 +95,8 @@ namespace pdxbytes.Devices.Display
                 BitsPerTransfer: 8);
 
             Spi = new SharedSPI(this.NormalState);
-            
+
+            _encoder = new RGB565Encoder();
         }
 
         private ExtendedSpiConfiguration NormalState;
@@ -107,20 +110,30 @@ namespace pdxbytes.Devices.Display
             DataCommandPort.Write(Data);
         }
 
-        public override void WriteBuffer(byte[] buffer)
+        public override void WriteBuffer(UInt24Collection buffer)
         {
-            Spi.Write(buffer);
+            Spi.Write(Encoder.Encode(buffer));
         }
 
-        public void DrawData(short x, short y, short width, short height, byte[] buffer)
+        public void DrawData(short x, short y, short width, short height, UInt24Collection buffer)
         {
             this.BeginDraw(x, y, width, height);
             this.WriteBuffer(buffer);
         }
 
+        // this.Width * 128;
         public override int BufferSize { get { return this.Width * 128; } }
 
         public override int Stride { get { return this.Width; } }
+
+        public override ColorEncoder Encoder
+        {
+            get
+            {
+                return _encoder;
+            }
+        }
+        private ColorEncoder _encoder;
 
         #endregion
 

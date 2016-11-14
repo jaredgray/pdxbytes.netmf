@@ -67,7 +67,6 @@
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
     <Compile Include="MyApplication.cs" />
-    <Compile Include="Palette.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="System.Diagnostics\DebuggerBrowsableState.cs" />
@@ -88,6 +87,10 @@
     <ProjectReference Include="..\pdxbytes.Devices\pdxbytes.Devices.csproj">
       <Project>{5453446F-5E0B-43B7-9369-569A2FF21291}</Project>
       <Name>pdxbytes.Devices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pdxbytes.Encoders\pdxbytes.Encoders.csproj">
+      <Project>{ADCFAA9D-7350-4F3A-A384-DFC6A0131F69}</Project>
+      <Name>pdxbytes.Encoders</Name>
     </ProjectReference>
     <ProjectReference Include="..\pdxbytes.Extensions\pdxbytes.Extensions.csproj">
       <Project>{0824E51B-AC8B-4DFE-B554-BCB313209ECD}</Project>
